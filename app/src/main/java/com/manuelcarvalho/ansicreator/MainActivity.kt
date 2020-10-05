@@ -61,6 +61,10 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
+            R.id.action_camera -> {
+                capturePhoto()
+                return true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -100,5 +104,11 @@ class MainActivity : AppCompatActivity() {
             )
                 .show()
         }
+    }
+
+    private fun capturePhoto() {
+
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(cameraIntent, CAMERA_PERMISSION_CODE)
     }
 }

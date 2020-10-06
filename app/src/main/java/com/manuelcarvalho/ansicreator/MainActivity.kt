@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_first.*
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
@@ -73,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == CAMERA_PERMISSION_CODE && data != null) {
             val newPhoto = (data.extras?.get("data") as Bitmap)
-
+            imageView.setImageBitmap(newPhoto)
 
         }
 
@@ -82,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             val imageUri = data.data
             val bitmap =
                 MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri)
-
+            imageView.setImageBitmap(bitmap)
         }
     }
 

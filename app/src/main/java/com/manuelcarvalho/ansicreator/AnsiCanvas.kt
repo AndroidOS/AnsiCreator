@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
@@ -27,6 +26,8 @@ class AnsiCanvas(context: Context) : View(context) {
         ResourcesCompat.getColor(resources, R.color.canvasBackground, null)
     private val drawColor = ResourcesCompat.getColor(resources, R.color.canvasColor, null)
 
+    // A 6x5 array of Int, all set to 0.
+    var display = Array(80) { Array(25) { 0 } }
 
     private val paint = Paint().apply {
         color = drawColor
@@ -57,14 +58,21 @@ class AnsiCanvas(context: Context) : View(context) {
         touchX = event.x
         touchY = event.y
 
-        for (x in -canvasWidth..canvasWidth) {
-            Log.d(TAG, " $x")
-            val x1 = x * touchX / 10
-            extraCanvas.drawPoint((x1 + 400), (x * x).toFloat(), paint)
-        }
+//        for (x in -canvasWidth..canvasWidth) {
+////            Log.d(TAG, " $x")
+////            val x1 = x * touchX / 10
+////            extraCanvas.drawPoint((x1 + 400), (x * x).toFloat(), paint)
+////        }
+
+
+        dispScreen()
 
         invalidate()
 
         return true
+    }
+
+    fun dispScreen() {
+        
     }
 }

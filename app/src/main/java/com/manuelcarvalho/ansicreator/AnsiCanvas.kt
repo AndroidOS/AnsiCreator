@@ -73,6 +73,21 @@ class AnsiCanvas(context: Context) : View(context) {
     }
 
     fun dispScreen() {
-        
+        val stepX = canvasWidth / 80
+        val stepY = canvasHeight / 25
+        for (y in 0..canvasHeight step stepY)
+            for (x in 0..canvasWidth step stepX) {
+                for (x1 in x..stepX + x) {
+                    for (y1 in y..stepY + y) {
+                        extraCanvas.drawPoint(x1.toFloat(), y1.toFloat(), paint)
+                    }
+                }
+                drawChar(x, 50)
+                //extraCanvas.drawPoint(x.toFloat(), (50).toFloat(), paint)
+            }
+    }
+
+    fun drawChar(x: Int, y: Int) {
+
     }
 }

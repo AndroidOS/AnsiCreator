@@ -1,4 +1,4 @@
-package com.manuelcarvalho.ansicreator
+package com.manuelcarvalho.ansicreator.view
 
 import android.Manifest
 import android.app.Activity
@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import com.manuelcarvalho.ansicreator.R
 import kotlinx.android.synthetic.main.fragment_first.*
 import java.io.File
 

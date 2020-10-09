@@ -1,4 +1,4 @@
-package com.manuelcarvalho.ansicreator
+package com.manuelcarvalho.ansicreator.view
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
+import com.manuelcarvalho.ansicreator.R
 
 
 private const val TAG = "Canvas"
@@ -73,6 +74,32 @@ class AnsiCanvas(context: Context) : View(context) {
     }
 
     fun dispScreen() {
+        display[40][12] = 1
+        display[70][20] = 1
+        val stepX = canvasWidth / 80
+        val stepY = canvasHeight / 25
+
+        for (x in 1..79) {
+            for (y in 1..24) {
+                if (display[x][y] == 1) {
+                    val x1 = x * stepX
+                    val y1 = y * stepY
+                    //extraCanvas.drawPoint(x1.toFloat(), y1.toFloat(), paint)
+
+                    for (x2 in x1..stepX + x1) {
+                        for (y2 in y1..stepY + y1) {
+                            extraCanvas.drawPoint(x2.toFloat(), y2.toFloat(), paint)
+                        }
+                    }
+
+
+                }
+            }
+
+        }
+    }
+
+    fun dispScreen1() {
         val stepX = canvasWidth / 80
         val stepY = canvasHeight / 25
         for (y in 0..canvasHeight step stepY)

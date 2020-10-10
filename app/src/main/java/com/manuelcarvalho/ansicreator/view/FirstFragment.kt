@@ -28,7 +28,8 @@ class FirstFragment : Fragment() {
 
 
         var view = activity?.applicationContext?.let { AnsiCanvas(it) }
-        constraintLay.addView(view)
+
+        canLay.addView(view)
 
     }
 }

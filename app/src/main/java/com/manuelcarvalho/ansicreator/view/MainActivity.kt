@@ -13,9 +13,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.manuelcarvalho.ansicreator.R
+import com.manuelcarvalho.ansicreator.viewmodel.AppViewModel
 import kotlinx.android.synthetic.main.fragment_first.*
 import java.io.File
 
@@ -29,11 +31,14 @@ class MainActivity : AppCompatActivity() {
     private val filepath = "MyFileStorage"
     internal var myExternalFile: File? = null
 
+    private lateinit var viewModel: AppViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        viewModel = ViewModelProviders.of(this)[AppViewModel::class.java]
 
         checkPermission(
             Manifest.permission.WRITE_EXTERNAL_STORAGE,

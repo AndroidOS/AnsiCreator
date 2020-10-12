@@ -7,12 +7,14 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -21,6 +23,7 @@ import com.manuelcarvalho.ansicreator.viewmodel.AppViewModel
 import kotlinx.android.synthetic.main.fragment_first.*
 import java.io.File
 
+private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
 
 
@@ -49,6 +52,8 @@ class MainActivity : AppCompatActivity() {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             STORAGE_PERMISSION_CODE
         )
+
+        observeViewModel()
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -81,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK && requestCode == CAMERA_PERMISSION_CODE && data != null) {
             val newPhoto = (data.extras?.get("data") as Bitmap)
             imageView.setImageBitmap(newPhoto)
+            viewModel.decodeBitmap(newPhoto)
 
         }
 
@@ -117,5 +123,16 @@ class MainActivity : AppCompatActivity() {
 
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(cameraIntent, CAMERA_PERMISSION_CODE)
+    }
+
+    private fun observeViewModel() {
+        Log.d(TAG, "ObserveViewModel started")
+        viewModel.imageArray.observe(this, Observer { image ->
+            image?.let {
+
+
+            }
+        })
+
     }
 }

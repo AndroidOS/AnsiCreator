@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.imageArray.observe(this, Observer { image ->
             image?.let {
 
-
+                Log.d(TAG, "observeViewModel fired")
             }
         })
 

@@ -13,12 +13,23 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
     val imageArray = MutableLiveData<Array<Array<Int>>>()
 
     fun decodeBitmap(bitmap: Bitmap) {
+        var display = Array(80) { Array(25) { 0 } }
+        var count = 0
+        var pixsum = 0
+        var average = 0
         for (y in 0..bitmap.height - 1) {
             for (x in 0..bitmap.width - 1) {
                 val pix = bitmap.get(x, y)
-                Log.d(TAG, "${pix}")
+                count += 1
+                pixsum += pix
+                Log.d(TAG, "${pixsum}")
             }
         }
+        average = pixsum / count
+        Log.d(TAG, "Pix average = ${average}")
+        display[40][16] = 1
+        display[70][22] = 1
+        imageArray.value = display
     }
 
 }

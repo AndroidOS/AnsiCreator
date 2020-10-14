@@ -117,4 +117,9 @@ class AnsiCanvas(context: Context) : View(context) {
     fun drawChar(x: Int, y: Int) {
 
     }
+
+    fun updateScreen(array: Array<Array<Int>>) {
+        display = array
+        invalidate()
+    }
 }

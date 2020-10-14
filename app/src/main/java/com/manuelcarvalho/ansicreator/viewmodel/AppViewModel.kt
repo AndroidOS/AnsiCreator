@@ -26,6 +26,19 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
             }
         }
         average = pixsum / count
+        var matX = 0
+        var matY = 0
+        for (y in 0..bitmap.height - 1 step (bitmap.height / 25)) {
+            for (x in 0..bitmap.width - 1 step (bitmap.width / 80)) {
+                val pix = bitmap.get(x, y)
+                if (pix > average) {
+                    display[matX][matY] = 1
+                }
+                matX += 1
+            }
+            matX = 0
+            matY += 1
+        }
         Log.d(TAG, "Pix average = ${average}")
         display[40][16] = 1
         display[70][22] = 1

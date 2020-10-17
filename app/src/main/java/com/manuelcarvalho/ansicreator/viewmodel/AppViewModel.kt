@@ -33,7 +33,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                 val pix = bitmap.get(x, y)
 
 
-                if (pix < average) {
+                if (pix < -average) {
                     display[matX][matY] = 1
                     Log.d(TAG, "x ${matX} y ${matY}")
                 }

@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -22,6 +23,7 @@ import com.manuelcarvalho.ansicreator.R
 import com.manuelcarvalho.ansicreator.viewmodel.AppViewModel
 import kotlinx.android.synthetic.main.fragment_first.*
 import java.io.File
+
 
 private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
@@ -77,6 +79,10 @@ class MainActivity : AppCompatActivity() {
                 capturePhoto()
                 return true
             }
+            R.id.action_image -> {
+                captureImage()
+                return true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -123,6 +129,15 @@ class MainActivity : AppCompatActivity() {
 
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(cameraIntent, CAMERA_PERMISSION_CODE)
+    }
+
+    private fun captureImage() {
+        Log.d(TAG, "captureImage fired")
+        val icon = BitmapFactory.decodeResource(
+            this.resources,
+            R.drawable.bart
+        )
+        imageView.setImageBitmap(icon)
     }
 
     private fun observeViewModel() {

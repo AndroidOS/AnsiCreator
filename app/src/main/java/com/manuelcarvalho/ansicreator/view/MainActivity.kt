@@ -138,6 +138,7 @@ class MainActivity : AppCompatActivity() {
             R.drawable.bart
         )
         imageView.setImageBitmap(icon)
+        viewModel.decodeBitmap(icon)
     }
 
     private fun observeViewModel() {

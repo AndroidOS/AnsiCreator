@@ -41,23 +41,25 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                         display[matX][matY] = 1
                         Log.d(TAG, "x ${matX} y ${matY}")
                     }
-                    if ((matX > 78)) {
-                        matX = 79
-                    } else {
-                        matX += 1
-                    }
+//                    if ((matX > 78)) {
+//                        matX = 78
+//                    } else {
+                    matX += 1
+                    //}
                 }
+
                 matX = 0
+
                 if ((matY > 23)) {
                     matY = 23
                 } else {
                     matY += 1
                 }
-                matY += 1
+                //matY += 1
             }
             Log.d(TAG, "Pix average = ${average}")
-            display[40][16] = 1
-            display[70][22] = 1
+//            display[40][16] = 1
+//            display[70][22] = 1
             viewModelScope.launch(Dispatchers.Main) {
                 imageArray.value = display
             }

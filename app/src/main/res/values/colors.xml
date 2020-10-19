@@ -6,4 +6,45 @@
 
     <color name="canvasBackground">#000000</color>
     <color name="canvasColor">#FFFFFF</color>
+
+    <color name="cga_black">#000000</color>
+    <color name="cga_white">#ffffff</color>
+    <color name="cga_light_gray">#aaaaaa</color>
+    <color name="cga_light_gray1">#555555</color>
+
+    <color name="cga_yellow">#ffff55</color>
+    <color name="cga_brown">#aa5500</color>
+    <color name="cga_light_red">#ff5555</color>
+    <color name="cga_dark_red">#aa0000</color>
+
+
+    <color name="cga_light_green">#55ff55</color>
+    <color name="cga_dark_green">#00aa00</color>
+    <color name="cga_light_cyan">#55ffff</color>
+    <color name="cga_dark_cyan">#00aaaa</color>
+
+    <color name="cga_light_blue">#5555ff</color>
+    <color name="cga_dark_blue">#0000aa</color>
+    <color name="cga_light_magenta">#ff55ff</color>
+    <color name="cga_dark_magenta">#aa00aa</color>
+
+    <!--    //$cga_black: #000000-->
+    <!--    //$cga_white: #ffffff-->
+    <!--    $cga_light_gray: #aaaaaa-->
+    <!--    $cga_light_gray: #555555-->
+    <!--    -->
+    <!--    $cga_yellow: #ffff55-->
+    <!--    $cga_brown: #aa5500-->
+    <!--    $cga_light_red: #ff5555-->
+    <!--    $cga_dark_red: #aa0000-->
+    <!--    -->
+    <!--    $cga_light_green: #55ff55-->
+    <!--    $cga_dark_green: #00aa00-->
+    <!--    $cga_light_cyan: #55ffff-->
+    <!--    $cga_dark_cyan: #00aaaa-->
+    <!--    -->
+    <!--    $cga_light_blue: #5555ff-->
+    <!--    $cga_dark_blue: #0000aa-->
+    <!--    $cga_light_magenta: #ff55ff-->
+    <!--    $cga_dark_magenta: #aa00aa-->
 </resources>

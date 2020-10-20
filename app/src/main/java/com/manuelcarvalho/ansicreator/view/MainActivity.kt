@@ -55,6 +55,8 @@ class MainActivity : AppCompatActivity() {
             STORAGE_PERMISSION_CODE
         )
 
+
+
         observeViewModel()
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->

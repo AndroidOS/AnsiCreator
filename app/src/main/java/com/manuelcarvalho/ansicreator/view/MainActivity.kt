@@ -152,5 +152,12 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        viewModel.seekBarValue.observe(this, Observer { progress ->
+            progress?.let {
+
+                Log.d(TAG, "Progress changed ${it}")
+            }
+        })
+
     }
 }

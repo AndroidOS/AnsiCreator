@@ -46,6 +46,7 @@ class FirstFragment : Fragment() {
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 Log.d(TAG, "$progress")
+                viewModel.setSeekBarValue(progress)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {

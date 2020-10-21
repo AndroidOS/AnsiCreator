@@ -14,6 +14,7 @@ private const val TAG = "AppViewModel"
 class AppViewModel(application: Application) : BaseViewModel(application) {
 
     val imageArray = MutableLiveData<Array<Array<Int>>>()
+    val seekBarValue = MutableLiveData<Int>()
 
     fun decodeBitmap(bitmap: Bitmap) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -64,6 +65,10 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                 imageArray.value = display
             }
         }
+    }
+
+    fun setSeekBarValue(value: Int) {
+        seekBarValue.value = value
     }
 
     fun decodeBitmap1(bitmap: Bitmap) {

@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         viewModel = ViewModelProviders.of(this)[AppViewModel::class.java]
+        viewModel.seekBarValue.value = 1
 
         checkPermission(
             Manifest.permission.WRITE_EXTERNAL_STORAGE,

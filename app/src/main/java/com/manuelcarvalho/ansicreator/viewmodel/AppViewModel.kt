@@ -71,6 +71,54 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
         seekBarValue.value = value
     }
 
+    fun decodeBitmap2(bitmap: Bitmap) {
+        viewModelScope.launch(Dispatchers.IO) {
+            var display = Array(80) { Array(25) { 0 } }
+            var count = 0
+            var pixsum = 0
+            var average = 0
+            for (y in 0..bitmap.height - 1) {
+                for (x in 0..bitmap.width - 1) {
+                    val pix = bitmap.get(x, y)
+                    count += 1
+                    pixsum += pix
+                    //Log.d(TAG, "${pixsum}")
+                }
+            }
+            average = pixsum / count
+            var matX = 0
+            var matY = 0
+            for (y in 0..bitmap.height - 1 step (bitmap.height / 25)) {
+                for (x in 0..bitmap.width - 1 step (bitmap.width / 80)) {
+                    val pix = bitmap.get(x, y)
+                    display[matX][matY] = decode16Colors(pix, average)
+                    matX += 1
+                    //}
+                }
+
+                matX = 0
+
+                if ((matY > 23)) {
+                    matY = 23
+                } else {
+                    matY += 1
+                }
+                //matY += 1
+            }
+            Log.d(TAG, "Pix average = ${average}")
+//            display[40][16] = 1
+//            display[70][22] = 1
+            viewModelScope.launch(Dispatchers.Main) {
+                imageArray.value = display
+            }
+        }
+    }
+
+    fun setSeekBarValue2(value: Int) {
+        seekBarValue.value = value
+    }
+
+
     fun decodeBitmap1(bitmap: Bitmap) {
         var display = Array(80) { Array(25) { 0 } }
         var count = 0
@@ -114,6 +162,11 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
         display[40][16] = 1
         display[70][22] = 1
         imageArray.value = display
+    }
+
+    private fun decode16Colors(pix: Int, maxValue: Int): Int {
+        
+        return 1
     }
 
 }

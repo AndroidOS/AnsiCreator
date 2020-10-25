@@ -92,8 +92,11 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                 for (x in 0..bitmap.width - 1 step (bitmap.width / 80)) {
                     val pix = bitmap.get(x, y)
                     display[matX][matY] = decode16Colors(pix, average)
-                    matX += 1
-                    //}
+                    if ((matX > 78)) {
+                        matX = 79
+                    } else {
+                        matX += 1
+                    }
                 }
 
                 matX = 0
@@ -103,6 +106,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                 } else {
                     matY += 1
                 }
+
                 //matY += 1
             }
             Log.d(TAG, "Pix average = ${average}")
@@ -164,9 +168,24 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
         imageArray.value = display
     }
 
-    private fun decode16Colors(pix: Int, maxValue: Int): Int {
-        
-        return 1
+    private fun decode16Colors(pix: Int, maximumVal: Int): Int {
+        var value = 0
+        when (pix) {
+            in maximumVal..maximumVal / 2 -> {
+                value = 1
+            }
+            in maximumVal / 2..maximumVal / 3 -> {
+                value = 2
+            }
+            in maximumVal / 3..maximumVal / 4 -> {
+                value = 3
+            }
+            else -> {
+                value = 0
+            }
+        }
+
+        return value
     }
 
 }

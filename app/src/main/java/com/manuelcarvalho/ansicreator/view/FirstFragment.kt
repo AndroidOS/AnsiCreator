@@ -66,8 +66,19 @@ class FirstFragment : Fragment() {
             image?.let {
                 view2.updateScreen(it)
                 Log.d(TAG, "observeViewModel fired")
+                displayArray(it)
             }
         })
 
+    }
+
+    private fun displayArray(array: kotlin.Array<kotlin.Array<Int>>) {
+        for (n in array) {
+            for (x in n) {
+
+                val a: Int = x
+                Log.d(TAG, "${a}")
+            }
+        }
     }
 }

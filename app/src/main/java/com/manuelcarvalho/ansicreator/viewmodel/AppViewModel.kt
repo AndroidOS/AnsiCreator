@@ -40,7 +40,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
                     if (pix < -average / (seekBarValue.value!!)) {  //pix < -average * (seekBarValue.value?.times((0.8))!!)
                         display[matX][matY] = 1
-                        Log.d(TAG, "x ${matX} y ${matY}")
+                        //Log.d(TAG, "x ${matX} y ${matY}")
                     }
 //                    if ((matX > 78)) {
 //                        matX = 78
@@ -92,6 +92,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                 for (x in 0..bitmap.width - 1 step (bitmap.width / 80)) {
                     val pix = bitmap.get(x, y)
                     display[matX][matY] = decode16Colors(pix, average)
+                    Log.d(TAG, "${matX} ${matY}  ${display[matX][matY]}  ${pix}")
                     if ((matX > 78)) {
                         matX = 79
                     } else {
@@ -146,7 +147,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
                 if (pix < -average) {
                     display[matX][matY] = 1
-                    Log.d(TAG, "x ${matX} y ${matY}")
+                    //Log.d(TAG, "x ${matX} y ${matY}")
                 }
                 if ((matX > 78)) {
                     matX = 79
@@ -170,21 +171,28 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
     private fun decode16Colors(pix: Int, maximumVal: Int): Int {
         var value = 0
-        when (pix) {
-            in maximumVal..maximumVal / 2 -> {
-                value = 1
-            }
-            in maximumVal / 2..maximumVal / 3 -> {
-                value = 2
-            }
-            in maximumVal / 3..maximumVal / 4 -> {
-                value = 3
-            }
-            else -> {
-                value = 0
-            }
-        }
 
+        if (pix < -maximumVal) {
+            value = 2
+        }
+        //Log.d(TAG,"$pix  $maximumVal")
+//        when (pix) {
+//            in -maximumVal..-maximumVal/2 -> {
+//                value = 1
+//            }
+//            in maximumVal / 2..maximumVal / 3 -> {
+//                value = 2
+//            }
+//            in maximumVal / 3..maximumVal / 4 -> {
+//                value = 3
+//            }
+//            else -> {
+//                value = 0
+//            }
+//        }
+        if (value > 0) {
+            Log.d(TAG, "+   ${value}")
+        }
         return value
     }
 

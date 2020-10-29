@@ -173,7 +173,13 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
         var value = 0
 
         if (pix < -maximumVal) {
+            value = 1
+        }
+        if (pix == -65794) {
             value = 2
+        }
+        if (pix >= -142302) {
+            value = 3
         }
         //Log.d(TAG,"$pix  $maximumVal")
 //        when (pix) {

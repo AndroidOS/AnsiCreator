@@ -172,14 +172,21 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
     private fun decode16Colors(pix: Int, maximumVal: Int): Int {
         var value = 0
 
-        if (pix < -maximumVal) {
+        if (pix == -1) {
             value = 1
+            return value
         }
         if (pix == -65794) {
             value = 2
+            return value
         }
-        if (pix >= -142302) {
+        if (pix > -65794 && pix < -142302) {
+            value = 4
+            return value
+        }
+        if (pix <= -142302) {
             value = 3
+            return value
         }
         //Log.d(TAG,"$pix  $maximumVal")
 //        when (pix) {

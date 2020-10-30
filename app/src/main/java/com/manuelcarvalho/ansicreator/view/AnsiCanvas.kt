@@ -25,16 +25,17 @@ class AnsiCanvas(context: Context) : View(context) {
 
     private val backgroundColor =
         ResourcesCompat.getColor(resources, R.color.canvasBackground, null)
-    private val drawColor = ResourcesCompat.getColor(resources, R.color.cga_white, null)
+    private val drawColor0 = ResourcesCompat.getColor(resources, R.color.cga_white, null)
     private val drawColor1 = ResourcesCompat.getColor(resources, R.color.cga_yellow, null)
     private val drawColor2 = ResourcesCompat.getColor(resources, R.color.cga_light_cyan, null)
     private val drawColor3 = ResourcesCompat.getColor(resources, R.color.cga_light_red, null)
+    private val drawColor4 = ResourcesCompat.getColor(resources, R.color.cga_light_green, null)
 
     // A 6x5 array of Int, all set to 0.
     var display = Array(80) { Array(25) { 0 } }
 
-    private val paint = Paint().apply {
-        color = drawColor
+    private val paint0 = Paint().apply {
+        color = drawColor0
         style = Paint.Style.STROKE
         strokeWidth = 5f
         textSize = 20f
@@ -53,6 +54,12 @@ class AnsiCanvas(context: Context) : View(context) {
     }
     private val paint3 = Paint().apply {
         color = drawColor3
+        style = Paint.Style.STROKE
+        strokeWidth = 5f
+        textSize = 20f
+    }
+    private val paint4 = Paint().apply {
+        color = drawColor4
         style = Paint.Style.STROKE
         strokeWidth = 5f
         textSize = 20f
@@ -109,7 +116,7 @@ class AnsiCanvas(context: Context) : View(context) {
 
                     for (x2 in x1..stepX + x1) {
                         for (y2 in y1..stepY + y1) {
-                            extraCanvas.drawPoint(x2.toFloat(), y2.toFloat(), paint)
+                            extraCanvas.drawPoint(x2.toFloat(), y2.toFloat(), paint0)
                         }
                     }
 
@@ -128,6 +135,19 @@ class AnsiCanvas(context: Context) : View(context) {
 
 
                 }
+//                if (display[x][y] == 3) {
+//                    val x1 = x * stepX
+//                    val y1 = y * stepY
+//                    //extraCanvas.drawPoint(x1.toFloat(), y1.toFloat(), paint)
+//
+//                    for (x2 in x1..stepX + x1) {
+//                        for (y2 in y1..stepY + y1) {
+//                            extraCanvas.drawPoint(x2.toFloat(), y2.toFloat(), paint2)
+//                        }
+//                    }
+//
+//
+//                }
                 if (display[x][y] == 3) {
                     val x1 = x * stepX
                     val y1 = y * stepY
@@ -144,7 +164,13 @@ class AnsiCanvas(context: Context) : View(context) {
                 if (display[x][y] == 4) {
                     val x1 = x * stepX
                     val y1 = y * stepY
-                    extraCanvas.drawPoint(x1.toFloat(), y1.toFloat(), paint3)
+                    //extraCanvas.drawPoint(x1.toFloat(), y1.toFloat(), paint)
+
+                    for (x2 in x1..stepX + x1) {
+                        for (y2 in y1..stepY + y1) {
+                            extraCanvas.drawPoint(x2.toFloat(), y2.toFloat(), paint3)
+                        }
+                    }
 
 
                 }
@@ -160,7 +186,7 @@ class AnsiCanvas(context: Context) : View(context) {
             for (x in 0..canvasWidth step stepX) {
                 for (x1 in x..stepX + x) {
                     for (y1 in y..stepY + y) {
-                        extraCanvas.drawPoint(x1.toFloat(), y1.toFloat(), paint)
+                        extraCanvas.drawPoint(x1.toFloat(), y1.toFloat(), paint0)
                     }
                 }
                 drawChar(x, 50)

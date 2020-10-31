@@ -16,6 +16,8 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
     val imageArray = MutableLiveData<Array<Array<Int>>>()
     val seekBarValue = MutableLiveData<Int>()
 
+    var pixList = mutableMapOf<Int, Int>()
+
     fun decodeBitmap(bitmap: Bitmap) {
         viewModelScope.launch(Dispatchers.IO) {
             var display = Array(80) { Array(25) { 0 } }
@@ -171,7 +173,13 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
     private fun decode16Colors(pix: Int, maximumVal: Int): Int {
         var value = 0
-
+        if (!(pix in pixList)) {
+            pixList.put(pix, 1)
+        } else {
+            var a: Int = pixList[pix] ?: 1
+            a += 1
+            pixList[pix] = a
+        }
         if (pix == -1) {
             value = 1
             return value
@@ -206,6 +214,9 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
         if (value > 0) {
             Log.d(TAG, "+   ${value}")
         }
+
+        val result = pixList.toList().sortedBy { (_, value) -> value }.toMap()
+        Log.d(TAG, "${result}")
         return value
     }
 

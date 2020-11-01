@@ -84,9 +84,25 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
                     val pix = bitmap.get(x, y)
                     count += 1
                     pixsum += pix
+
+                    if (!(pix in pixList)) {
+                        pixList.put(pix, 1)
+                    } else {
+                        var a: Int = pixList[pix] ?: 1
+                        a += 1
+                        pixList[pix] = a
+                    }
+
                     //Log.d(TAG, "${pixsum}")
                 }
             }
+            val result = pixList.toList().sortedBy { (_, value) -> value }.toMap()
+
+
+
+            Log.d(TAG, "${result}")
+
+
             average = pixsum / count
             var matX = 0
             var matY = 0
@@ -115,6 +131,7 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
             Log.d(TAG, "Pix average = ${average}")
 //            display[40][16] = 1
 //            display[70][22] = 1
+
             viewModelScope.launch(Dispatchers.Main) {
                 imageArray.value = display
             }
@@ -173,13 +190,13 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
 
     private fun decode16Colors(pix: Int, maximumVal: Int): Int {
         var value = 0
-        if (!(pix in pixList)) {
-            pixList.put(pix, 1)
-        } else {
-            var a: Int = pixList[pix] ?: 1
-            a += 1
-            pixList[pix] = a
-        }
+//        if (!(pix in pixList)) {
+//            pixList.put(pix, 1)
+//        } else {
+//            var a: Int = pixList[pix] ?: 1
+//            a += 1
+//            pixList[pix] = a
+//        }
         if (pix == -1) {
             value = 1
             return value
@@ -215,8 +232,10 @@ class AppViewModel(application: Application) : BaseViewModel(application) {
             Log.d(TAG, "+   ${value}")
         }
 
-        val result = pixList.toList().sortedBy { (_, value) -> value }.toMap()
-        Log.d(TAG, "${result}")
+//        val result = pixList.toList().sortedBy { (_, value) -> value }.toMap()
+//        Log.d(TAG, "${result}")
+
+
         return value
     }
 

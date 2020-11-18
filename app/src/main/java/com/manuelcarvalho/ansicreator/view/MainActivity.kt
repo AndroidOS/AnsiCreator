@@ -1,5 +1,6 @@
 package com.manuelcarvalho.ansicreator.view
 
+
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
@@ -17,8 +18,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.manuelcarvalho.ansicreator.R
 import com.manuelcarvalho.ansicreator.viewmodel.AppViewModel
 import kotlinx.android.synthetic.main.fragment_first.*
@@ -61,8 +62,7 @@ class MainActivity : AppCompatActivity() {
         observeViewModel()
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            findNavController(R.id.coord).navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
     }
 
